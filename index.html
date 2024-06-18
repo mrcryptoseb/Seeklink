@@ -74,7 +74,66 @@
     <section id="contacts" class="container hidden">
         <article>
             <h2>Contacts</h2>
-            <p>Manage your contacts here.</p>
+            <form id="contact-form">
+                <input type="text" id="full-name" name="full-name" placeholder="Full Name" required>
+                <input type="email" id="email" name="email" placeholder="Email Address" required>
+                <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+                <select id="preferred-contact" name="preferred-contact" required>
+                    <option value="" disabled selected>Preferred Way of Contact</option>
+                    <option value="email">Email</option>
+                    <option value="phone">Phone</option>
+                </select>
+                <input type="text" id="street-address" name="street-address" placeholder="Street Address" required>
+                <input type="text" id="city" name="city" placeholder="City" required>
+                <input type="text" id="postal-code" name="postal-code" placeholder="Postal Code" required>
+                <select id="relationship-status" name="relationship-status" required>
+                    <option value="" disabled selected>Relationship Status</option>
+                    <option value="single">Single</option>
+                    <option value="married">Married</option>
+                    <option value="divorced">Divorced</option>
+                    <option value="widowed">Widowed</option>
+                </select>
+                <select id="age-group" name="age-group" required>
+                    <option value="" disabled selected>Age Group</option>
+                    <option value="child">Child</option>
+                    <option value="teenager">Teenager</option>
+                    <option value="adult">Adult</option>
+                    <option value="senior">Senior</option>
+                </select>
+                <select id="employment-status" name="employment-status" required>
+                    <option value="" disabled selected>Employment Status</option>
+                    <option value="employed">Employed</option>
+                    <option value="unemployed">Unemployed</option>
+                    <option value="student">Student</option>
+                    <option value="retired">Retired</option>
+                </select>
+                <input type="text" id="duration" name="duration" placeholder="Duration at Church" required>
+                <input type="text" id="activities" name="activities" placeholder="Church Activities You Participate In" required>
+                <select id="children" name="children" required>
+                    <option value="" disabled selected>Do you have children/grandchildren at church?</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+                <input type="date" id="dob" name="dob" placeholder="Date of Birth" required>
+                <input type="date" id="anniversary" name="anniversary" placeholder="Anniversary Date (if married)">
+                <select id="gender" name="gender" required>
+                    <option value="" disabled selected>Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+                <select id="membership-status" name="membership-status" required>
+                    <option value="" disabled selected>Membership Status</option>
+                    <option value="member">Member</option>
+                    <option value="visitor">Visitor</option>
+                </select>
+                <input type="date" id="baptism-date" name="baptism-date" placeholder="Baptism Date">
+                <input type="text" id="occupation" name="occupation" placeholder="Occupation">
+                <input type="text" id="emergency-contact-name" name="emergency-contact-name" placeholder="Emergency Contact Name">
+                <input type="tel" id="emergency-contact-phone" name="emergency-contact-phone" placeholder="Emergency Contact Phone Number">
+                <textarea id="notes" name="notes" placeholder="Additional Information"></textarea>
+                <button type="submit">Save Contact</button>
+            </form>
         </article>
     </section>
 
@@ -129,6 +188,12 @@
             document.getElementById('logout-link').classList.add('hidden');
             showSection('welcome-section');
         }
+
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Contact saved successfully!');
+            // Add your code here to save the contact information to your database
+        });
     </script>
 </body>
 </html>
