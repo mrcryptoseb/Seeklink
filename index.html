@@ -16,9 +16,9 @@
             <li><strong>SeekLink</strong></li>
         </ul>
         <ul id="nav-links">
-            <li><a href="#features">Features</a></li>
-            <li><a href="#benefits">Benefits</a></li>
-            <li><a href="#" onclick="showSection('login-section')">Login</a></li>
+            <li id="features-link"><a href="#features">Features</a></li>
+            <li id="benefits-link"><a href="#benefits">Benefits</a></li>
+            <li id="login-link"><a href="#" onclick="showSection('login-section')">Login</a></li>
             <li class="hidden" id="dashboard-link"><a href="#" onclick="showSection('dashboard')">Dashboard</a></li>
             <li class="hidden" id="contacts-link"><a href="#" onclick="showSection('contacts')">Contacts</a></li>
             <li class="hidden" id="activities-link"><a href="#" onclick="showSection('activities')">Activities</a></li>
@@ -104,6 +104,10 @@
             const password = document.getElementById('password').value;
             if (username === 'admin' && password === 'password') {
                 document.getElementById('login-section').classList.add('hidden');
+                document.getElementById('welcome-section').classList.add('hidden');
+                document.getElementById('features-link').classList.add('hidden');
+                document.getElementById('benefits-link').classList.add('hidden');
+                document.getElementById('login-link').classList.add('hidden');
                 document.getElementById('dashboard-link').classList.remove('hidden');
                 document.getElementById('contacts-link').classList.remove('hidden');
                 document.getElementById('activities-link').classList.remove('hidden');
@@ -115,6 +119,10 @@
         });
 
         function logout() {
+            document.getElementById('welcome-section').classList.remove('hidden');
+            document.getElementById('features-link').classList.remove('hidden');
+            document.getElementById('benefits-link').classList.remove('hidden');
+            document.getElementById('login-link').classList.remove('hidden');
             document.getElementById('dashboard-link').classList.add('hidden');
             document.getElementById('contacts-link').classList.add('hidden');
             document.getElementById('activities-link').classList.add('hidden');
