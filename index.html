@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SeekLink - CRM for Churches</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <style>
+        .hidden { display: none; }
+        .container { padding: 2rem; }
+    </style>
+</head>
+<body>
+    <nav class="container-fluid">
+        <ul>
+            <li><strong>SeekLink</strong></li>
+        </ul>
+        <ul id="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#benefits">Benefits</a></li>
+            <li><a href="#" onclick="showSection('login-section')">Login</a></li>
+            <li class="hidden" id="dashboard-link"><a href="#" onclick="showSection('dashboard')">Dashboard</a></li>
+            <li class="hidden" id="contacts-link"><a href="#" onclick="showSection('contacts')">Contacts</a></li>
+            <li class="hidden" id="activities-link"><a href="#" onclick="showSection('activities')">Activities</a></li>
+            <li class="hidden" id="logout-link"><a href="#" onclick="logout()">Logout</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div class="grid">
+            <section id="welcome-section">
+                <hgroup>
+                    <h2>Welcome to SeekLink</h2>
+                    <h3>The Ultimate CRM for Churches</h3>
+                </hgroup>
+                <p>SeekLink is designed to help churches track interactions with their congregation. From email messages to phone calls, surveys, and overall well-being, our CRM ensures you stay connected and informed.</p>
+                <figure>
+                    <img src="https://images.unsplash.com/photo-1587139157340-7c6b3b1ad3d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="Church community">
+                    <figcaption><a href="https://unsplash.com" target="_blank">Image from Unsplash</a></figcaption>
+                </figure>
+                <h3 id="features">Key Features</h3>
+                <p>Track every activity including email messages, phone calls, and survey responses.</p>
+                <figure>
+                    <img src="https://images.unsplash.com/photo-1532697435788-621d81c90465?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="Teamwork and technology">
+                    <figcaption><a href="https://unsplash.com" target="_blank">Image from Unsplash</a></figcaption>
+                </figure>
+                <h3 id="benefits">Benefits</h3>
+                <p>Ensure the well-being of your congregation, improve communication, and maintain detailed records of interactions.</p>
+            </section>
+        </div>
+    </main>
+
+    <section id="login-section" class="container hidden">
+        <article>
+            <hgroup>
+                <h2>Login</h2>
+                <h3>Access your account</h3>
+            </hgroup>
+            <form id="login-form">
+                <input type="text" id="username" name="username" placeholder="Username" required>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </article>
+    </section>
+
+    <section id="dashboard" class="container hidden">
+        <article>
+            <h2>Dashboard</h2>
+            <p>Welcome to your CRM dashboard!</p>
+        </article>
+    </section>
+
+    <section id="contacts" class="container hidden">
+        <article>
+            <h2>Contacts</h2>
+            <p>Manage your contacts here.</p>
+        </article>
+    </section>
+
+    <section id="activities" class="container hidden">
+        <article>
+            <h2>Activities</h2>
+            <p>Track your activities here.</p>
+        </article>
+    </section>
+
+    <footer class="container">
+        <small><a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a></small>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('main > section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Simulate authentication process
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            if (username === 'admin' && password === 'password') {
+                document.getElementById('login-section').classList.add('hidden');
+                document.getElementById('dashboard-link').classList.remove('hidden');
+                document.getElementById('contacts-link').classList.remove('hidden');
+                document.getElementById('activities-link').classList.remove('hidden');
+                document.getElementById('logout-link').classList.remove('hidden');
+                showSection('dashboard');
+            } else {
+                alert('Invalid login credentials');
+            }
+        });
+
+        function logout() {
+            document.getElementById('dashboard-link').classList.add('hidden');
+            document.getElementById('contacts-link').classList.add('hidden');
+            document.getElementById('activities-link').classList.add('hidden');
+            document.getElementById('logout-link').classList.add('hidden');
+            showSection('welcome-section');
+        }
+    </script>
+</body>
+</html>
