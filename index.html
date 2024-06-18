@@ -6,8 +6,57 @@
     <title>SeekLink - CRM for Churches</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
     <style>
-        .hidden { display: none; }
-        .container { padding: 2rem; }
+        .hidden { 
+            display: none; 
+        }
+        .container { 
+            padding: 1rem; 
+            max-width: 960px; 
+            margin: auto; 
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #e0e0e0;
+            padding: 6px;
+            font-size: 0.9em;
+        }
+        th {
+            background-color: #fafafa;
+        }
+        .form-group {
+            margin-bottom: 0.75rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-size: 0.9em;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            border: 1px solid #ccc;
+            padding: 0.5rem;
+            font-size: 0.9em;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -57,82 +106,15 @@
                 <h3>Access your account</h3>
             </hgroup>
             <form id="login-form">
-                <input type="text" id="username" name="username" placeholder="Username" required>
-                <input type="password" id="password" name="password" placeholder="Password" required>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
                 <button type="submit">Login</button>
-            </form>
-        </article>
-    </section>
-
-    <section id="dashboard" class="container hidden">
-        <article>
-            <h2>Dashboard</h2>
-            <p>Welcome to your CRM dashboard!</p>
-        </article>
-    </section>
-
-    <section id="contacts" class="container hidden">
-        <article>
-            <h2>Contacts</h2>
-            <form id="contact-form">
-                <input type="text" id="full-name" name="full-name" placeholder="Full Name" required>
-                <input type="email" id="email" name="email" placeholder="Email Address" required>
-                <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
-                <select id="preferred-contact" name="preferred-contact" required>
-                    <option value="" disabled selected>Preferred Way of Contact</option>
-                    <option value="email">Email</option>
-                    <option value="phone">Phone</option>
-                </select>
-                <input type="text" id="street-address" name="street-address" placeholder="Street Address" required>
-                <input type="text" id="city" name="city" placeholder="City" required>
-                <input type="text" id="postal-code" name="postal-code" placeholder="Postal Code" required>
-                <select id="relationship-status" name="relationship-status" required>
-                    <option value="" disabled selected>Relationship Status</option>
-                    <option value="single">Single</option>
-                    <option value="married">Married</option>
-                    <option value="divorced">Divorced</option>
-                    <option value="widowed">Widowed</option>
-                </select>
-                <select id="age-group" name="age-group" required>
-                    <option value="" disabled selected>Age Group</option>
-                    <option value="child">Child</option>
-                    <option value="teenager">Teenager</option>
-                    <option value="adult">Adult</option>
-                    <option value="senior">Senior</option>
-                </select>
-                <select id="employment-status" name="employment-status" required>
-                    <option value="" disabled selected>Employment Status</option>
-                    <option value="employed">Employed</option>
-                    <option value="unemployed">Unemployed</option>
-                    <option value="student">Student</option>
-                    <option value="retired">Retired</option>
-                </select>
-                <input type="text" id="duration" name="duration" placeholder="Duration at Church" required>
-                <input type="text" id="activities" name="activities" placeholder="Church Activities You Participate In" required>
-                <select id="children" name="children" required>
-                    <option value="" disabled selected>Do you have children/grandchildren at church?</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-                <input type="date" id="dob" name="dob" placeholder="Date of Birth" required>
-                <input type="date" id="anniversary" name="anniversary" placeholder="Anniversary Date (if married)">
-                <select id="gender" name="gender" required>
-                    <option value="" disabled selected>Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
-                </select>
-                <select id="membership-status" name="membership-status" required>
-                    <option value="" disabled selected>Membership Status</option>
-                    <option value="member">Member</option>
-                    <option value="visitor">Visitor</option>
-                </select>
-                <input type="date" id="baptism-date" name="baptism-date" placeholder="Baptism Date">
-                <input type="text" id="occupation" name="occupation" placeholder="Occupation">
-                <input type="text" id="emergency-contact-name" name="emergency-contact-name" placeholder="Emergency Contact Name">
-                <input type="tel" id="emergency-contact-phone" name="emergency-contact-phone" placeholder="Emergency Contact Phone Number">
-                <textarea id="notes" name="notes" placeholder="Additional Information"></textarea>
-                <button type="submit">Save Contact</button>
             </form>
         </article>
     </section>
@@ -140,7 +122,43 @@
     <section id="activities" class="container hidden">
         <article>
             <h2>Activities</h2>
-            <p>Track your activities here.</p>
+            <form id="activity-form">
+                <div class="form-group">
+                    <label for="activity-full-name">Full Name</label>
+                    <input type="text" id="activity-full-name" name="activity-full-name" required oninput="checkUserExistence()">
+                </div>
+                <div class="form-group">
+                    <label for="capture-method">Capture Method</label>
+                    <select id="capture-method" name="capture-method" required onchange="toggleCaptureMethod()">
+                        <option value="" disabled selected>Select a method</option>
+                        <option value="manual">Manual Capture</option>
+                        <option value="voice">Voice Capture</option>
+                    </select>
+                </div>
+                <div id="manual-capture-group" class="hidden">
+                    <div class="form-group">
+                        <label for="activity-type">Activity Type</label>
+                        <select id="activity-type" name="activity-type" onchange="updateTopicOptions()">
+                            <option value="Survey">Survey</option>
+                            <option value="Visit">Visit</option>
+                            <option value="Phonecall">Phonecall</option>
+                            <option value="Email">Email</option>
+                            <option value="Whatsapp">WhatsApp</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="topic">Topic</label>
+                        <select id="topic" name="topic">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="summary">Summary of Conversation</label>
+                        <textarea id="summary" name="summary"></textarea>
+                    </div>
+                </div>
+                <button type="submit">Submit Activity</button>
+            </form>
         </article>
     </section>
 
@@ -150,7 +168,7 @@
 
     <script>
         function showSection(sectionId) {
-            document.querySelectorAll('main > section').forEach(section => {
+            document.querySelectorAll('main > section, section.container').forEach(section => {
                 section.classList.add('hidden');
             });
             document.getElementById(sectionId).classList.remove('hidden');
@@ -158,7 +176,6 @@
 
         document.getElementById('login-form').addEventListener('submit', function(event) {
             event.preventDefault();
-            // Simulate authentication process
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             if (username === 'admin' && password === 'password') {
@@ -189,10 +206,55 @@
             showSection('welcome-section');
         }
 
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
+        function toggleCaptureMethod() {
+            const captureMethod = document.getElementById('capture-method').value;
+            const manualCaptureGroup = document.getElementById('manual-capture-group');
+            if (captureMethod === 'manual') {
+                manualCaptureGroup.classList.remove('hidden');
+            } else {
+                manualCaptureGroup.classList.add('hidden');
+            }
+        }
+
+        function updateTopicOptions() {
+            const activityType = document.getElementById('activity-type').value;
+            const topicSelect = document.getElementById('topic');
+            let options = [];
+
+            switch (activityType) {
+                case 'Email':
+                    options = ['Retention', 'Promotions', 'Upcoming Events', 'Newsletter Updates', 'Feedback Request'];
+                    break;
+                case 'Visit':
+                    options = ['General Visit', 'Retention', 'Follow-up', 'New Member Introduction', 'Event Invitation'];
+                    break;
+                case 'Phonecall':
+                    options = ['General Inquiry', 'Retention', 'Check-in', 'Event Reminder', 'Volunteer Coordination'];
+                    break;
+                case 'Survey':
+                    options = ['Service Feedback', 'Event Feedback', 'Member Satisfaction', 'Community Engagement'];
+                    break;
+                case 'Whatsapp':
+                    options = ['Quick Update', 'Informal Check-in', 'Event Links', 'Reminder', 'Scheduling'];
+                    break;
+                case 'Other':
+                    options = ['Miscellaneous', 'Custom Request', 'Specific Inquiry'];
+                    break;
+            }
+
+            topicSelect.innerHTML = options.map(option => `<option value="${option}">${option}</option>`).join('');
+        }
+
+        function checkUserExistence() {
+            const fullName = document.getElementById('activity-full-name').value;
+            // Placeholder for actual user checking logic
+            alert('Check user logic to be implemented');
+        }
+
+        document.getElementById('activity-form').addEventListener('submit', function(event) {
             event.preventDefault();
-            alert('Contact saved successfully!');
-            // Add your code here to save the contact information to your database
+            // Placeholder for form submission logic
+            alert('Activity form submission logic to be implemented');
         });
     </script>
 </body>
